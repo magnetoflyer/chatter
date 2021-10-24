@@ -47,12 +47,13 @@ function Messages() {
   // actions that user performs
   const userActions = {
     sendMessage: () => {
+      if(userCurrentMessage!==null){
       setMessages([...messages, userCurrentMessage]);
       setUserCurrentMessage(null);
       document.getElementById('user-message-input').value = null;
       playSend();
       setLatestMessage(userCurrentMessage.user, userCurrentMessage.message);
-      socket.emit('user-message', userCurrentMessage.message);
+      socket.emit('user-message', userCurrentMessage.message);}
     }, 
 
     onChangeMessage: (e) =>  {
